@@ -1,5 +1,4 @@
 const fs = require('fs');
-
 // Read file in synchronously
 let input_data;
 try {
@@ -8,12 +7,9 @@ try {
 	console.error(err);
 	exit;
 }
-
-
 let dir_map = {};
-let working_dir;
+let working_dir, cmd;
 let dir_stack = [];
-let cmd;
 
 // Build a complete file mapping
 input_data.split(/\r?\n/).forEach(line => {
@@ -29,7 +25,6 @@ input_data.split(/\r?\n/).forEach(line => {
 						working_dir = dir_map;
 						dir_stack.push(dir_map);
 						break;
-
 					case '..':
 						// Remove the directoy from the stack.
 						// Figure out the one at the end, go there (cd down)
@@ -43,12 +38,8 @@ input_data.split(/\r?\n/).forEach(line => {
 						break;
 				}
 			break;
-			case 'ls':
-				// do nothing
-				break;
 		}
 	} else {
-
 		if(cmd[0] == 'dir') {
 			// Create new directory if we haven't made a mention of it yet
 			!(cmd[1] in working_dir) && (working_dir[cmd[1]] = {});
@@ -59,7 +50,6 @@ input_data.split(/\r?\n/).forEach(line => {
 		}
 	}
 });
-
 
 let directory_sizes = [];
 function recursive_size(curr_dir) {
@@ -78,7 +68,6 @@ function recursive_size(curr_dir) {
 
 // Now recursively compute the sizes. Make a list of computed directory sizes
 recursive_size(dir_map);
-
 
 // Get the answer to part 1
 let final_sum = 0;
