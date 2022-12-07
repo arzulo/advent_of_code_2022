@@ -3,7 +3,7 @@ const fs = require('fs');
 // Read file in synchronously
 let input_data;
 try {
-	input_data = fs.readFileSync('./day05/input.txt', 'utf8');
+	input_data = fs.readFileSync('./input.txt', 'utf8');
 } catch (err) {
 	console.error(err);
 	exit;
