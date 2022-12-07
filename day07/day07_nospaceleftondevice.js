@@ -3,7 +3,7 @@ const fs = require('fs');
 // Read file in synchronously
 let input_data;
 try {
-	input_data = fs.readFileSync('./day07/input.txt', 'utf8');
+	input_data = fs.readFileSync('./input.txt', 'utf8');
 } catch (err) {
 	console.error(err);
 	exit;
@@ -41,7 +41,6 @@ input_data.split(/\r?\n/).forEach(line => {
 						working_dir = working_dir[cmd[2]];
 						dir_stack.push(working_dir);
 						break;
-
 				}
 			break;
 			case 'ls':
@@ -58,11 +57,7 @@ input_data.split(/\r?\n/).forEach(line => {
 			var filename = cmd[1];
 			working_dir[filename] = filesize;
 		}
-
-
-
 	}
-
 });
 
 
